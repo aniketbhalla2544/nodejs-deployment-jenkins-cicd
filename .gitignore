@@ -1,0 +1,12 @@
+# Dependency directories
+node_modules/
+
+# Environment configuration files
+.env
+
+# Log files
+*.log
+npm-debug.log*
+
+# IDE / editors
+.vscode/
