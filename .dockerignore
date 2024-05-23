@@ -1,0 +1,29 @@
+# Dependency directories
+node_modules/
+
+# Environment configuration files
+.env
+
+# Logs
+*.log
+
+# git
+.git
+.gitignore
+.gitattributes
+README.md
+
+# Miscellaneous
+
+LICENSE
+.DS_Store
+
+# Node.js related
+npm-debug.log
+
+# IDE / editors
+.vscode/
+
+# Build directories
+build
+dist
