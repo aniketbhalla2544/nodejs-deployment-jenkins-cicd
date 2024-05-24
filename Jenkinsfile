@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building now hahaha..'
+                sh "docker build -t nodejs-server:latest ."
             }
         }
         stage('Test') {
