@@ -37,7 +37,7 @@ app.get('/api/products', (req, res) => {
       },
       {
         id: 4,
-        name: 'Aniket Product',
+        name: 'Aniket Product changed',
         description:
           'Non-slip, environmentally friendly yoga mat made from natural rubber. Ideal for both beginners and advanced yoga practitioners.',
         price: 50.0,
