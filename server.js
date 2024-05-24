@@ -13,7 +13,7 @@ app.get('/api/products', (req, res) => {
     products: [
       {
         id: 1,
-        name: 'Eco-Friendly Yoga Mat',
+        name: 'Eco-Friendly',
         description:
           'Non-slip, environmentally friendly yoga mat made from natural rubber. Ideal for both beginners and advanced yoga practitioners.',
         price: 50.0,

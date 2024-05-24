@@ -4,8 +4,10 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "building docker images."
-                // sh "docker build -t nodejs-server:latest ."
+                echo "building"
+                script {
+                    def image = docker.build 'nodejsserverec2:latest'
+                }
             }
         }
         stage('Test') {
