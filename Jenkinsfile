@@ -6,8 +6,9 @@ pipeline {
             steps {
                 echo "building"
                 script {
-                    def image = docker.build 'nodejsserverec2:latest'
+                    def image = docker.build('nodejsserverec2:latest', '.')
                 }
+                echo "docker image built"
             }
         }
         stage('Test') {
