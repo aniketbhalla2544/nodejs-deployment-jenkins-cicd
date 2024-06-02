@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo "building"
+                echo "building stage"
                 script {
                     def image = docker.build('nodejsserverec2:latest', '.')
                 }

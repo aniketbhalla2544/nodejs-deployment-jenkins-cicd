@@ -10,3 +10,6 @@ npm-debug.log*
 
 # IDE / editors
 .vscode/
+
+# Other
+ec2-init.sh
