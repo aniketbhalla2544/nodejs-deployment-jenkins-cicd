@@ -16,7 +16,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'docker run -d --name hello-world hello-world'
+                sh 'docker run hello-world'
                 echo 'Deploying....'
             }
         }
