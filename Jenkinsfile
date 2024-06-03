@@ -10,7 +10,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'building stage started'
+                echo 'building stage started!!'
                 script {
                     docker.build('nodejsserverec2:latest', '.')
                 }
