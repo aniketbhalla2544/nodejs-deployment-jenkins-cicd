@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building stage started!!'
-                sh 'docker build -f Dockerfile -t nodeserver .'
+                sh 'docker build -t nodeserver:latest .'
                 echo 'docker image built'
             }
         }
