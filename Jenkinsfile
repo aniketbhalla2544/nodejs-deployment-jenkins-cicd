@@ -2,13 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
+
         stage('Build') {
             steps {
-                echo "building stage"
+                echo 'building stage'
                 script {
-                    def image = docker.build('nodejsserverec2:latest', '.')
+                    docker.build('nodejsserverec2:latest', '.')
                 }
-                echo "docker image built"
+                echo 'docker image built'
             }
         }
         stage('Test') {
