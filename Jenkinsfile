@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building stage started!!'
-                sh 'docker build -t nodeserver .'
+                // sh 'docker build -t nodeserver .'
                 echo 'docker image built'
             }
         }
@@ -22,6 +22,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+                sh 'docker run -d --name hello-world hello-world'
                 echo 'Deploying....'
             }
         }
