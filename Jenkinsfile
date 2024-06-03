@@ -19,8 +19,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'docker run -d -p 3007:3007 nodeserver:latest'
-                sh 'docker run hello-world'
-
                 echo 'Deploying....'
             }
         }
