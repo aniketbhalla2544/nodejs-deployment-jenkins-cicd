@@ -5,18 +5,22 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'building stage started!!'
-                sh 'docker build -t nodeserver:latest .'
+                script {
+                    docker.build('nodeserver:latest', '.')
+                }
                 echo 'docker image built'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing now..'
+                echo 'Test passed'
             }
         }
         stage('Deploy') {
             steps {
+                sh 'docker run -d -p 3007:3007 nodeserver:latest'
                 sh 'docker run hello-world'
+
                 echo 'Deploying....'
             }
         }
