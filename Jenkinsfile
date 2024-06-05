@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Push docker image to AWS ECR') {
             steps {
-                echo 'pushing image to the Docker Hub image registery'
+                echo 'pushing image to the Docker Hub image registery now!!'
                 script {
                     nodejsimage.push
                 }
