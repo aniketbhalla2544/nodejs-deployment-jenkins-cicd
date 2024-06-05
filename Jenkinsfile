@@ -25,13 +25,25 @@ pipeline {
         stage('Push docker image to Docker Hub') {
             steps {
                 script {
+                    echo 'preparing to pushing docker image'
                     docker.withRegistry(env.DOCKER_REGISTRY_URL, env.DOCKER_HUB_CREDS) {
-                        nodejsImage = docker.image(env.NODEJS_IMAGE)
+                        nodejsImage = docker.image("${env.NODEJS_IMAGE}")
                         nodejsImage.push()
                     }
                 }
                 echo 'image pushed!!'
             }
+        }
+    }
+    post {
+        always {
+            echo 'clean up completed'
+        }
+        failure {
+            echo 'Pipeline faild'
+        }
+        success {
+            echo 'Pipeline succeeded!'
         }
     }
 }
