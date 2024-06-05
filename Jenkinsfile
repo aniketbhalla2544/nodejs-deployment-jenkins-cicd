@@ -24,7 +24,7 @@ pipeline {
         stage('Push docker image to AWS ECR') {
             steps {
                 script {
-                    docker.withRegistry(DOCKER_REGISTRY_URL, DOCKER_HUB_CREDS) {
+                    docker.withRegistry(env.DOCKER_REGISTRY_URL, env.DOCKER_HUB_CREDS) {
                         nodejsImage.push()
                     }
                 }
