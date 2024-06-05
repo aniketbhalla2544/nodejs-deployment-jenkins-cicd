@@ -7,7 +7,7 @@ pipeline {
                 script {
                     echo 'building docker image'
                     nodejsimage = docker.build 'nodeserver:latest', '.'
-                    echo 'docker image built'
+                    echo 'docker image built now!!'
                 }
             }
         }
