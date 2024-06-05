@@ -6,9 +6,9 @@ pipeline {
             steps {
                 script {
                     echo 'building docker image'
-                    nodejsimage = docker.build 'nodeserver:latest', '.'
+                    nodejsImage = docker.build('nodeserver:latest', '.')
                     echo 'docker image built now!!'
-                    nodejsimage.push
+                    nodejsImage.push()
                     echo 'image pushed'
                 }
             }
