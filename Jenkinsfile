@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKER_CREDS = 'docker-creds'
-    }
-
     stages {
         stage('Build') {
             steps {
@@ -12,7 +8,8 @@ pipeline {
                     echo 'building docker image'
                     nodejsImage = docker.build('aniketbhalla/nodeserver:latest', '.')
                     echo 'docker image built now!!'
-                    docker.withRegistry('', DOCKER_CREDS) {
+                    echo ''
+                    docker.withRegistry('', 'docker-creds') {
                         nodejsImage.push()
                     }
                     echo 'image pushed'
