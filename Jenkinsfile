@@ -4,11 +4,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'building stage started!!'
                 script {
-                    docker.build('nodeserver:latest', '.')
+                    echo 'build docker image'
+                    nodejsimage = docker.build 'nodeserver:latest', '.'
+                    echo 'docker image built'
+                    echo 'pushing image to Docker Hub image registery'
+                    nodejsimage.push
                 }
-                echo 'docker image built'
             }
         }
         stage('Test') {
@@ -16,10 +18,10 @@ pipeline {
                 echo 'Test passed'
             }
         }
-        stage('Deploy') {
+        stage('Push docker image to AWS ECR') {
             steps {
-                sh 'docker run -d -p 3007:3007 nodeserver:latest'
-                echo 'Deploying....'
+                script {
+                }
             }
         }
     }
