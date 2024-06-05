@@ -12,7 +12,9 @@ pipeline {
                     echo 'building docker image'
                     nodejsImage = docker.build('aniketbhalla/nodeserver:latest', '.')
                     echo 'docker image built now!!'
-                    nodejsImage.push()
+                    docker.withRegistry('', DOCKER_CREDS) {
+                        nodejsImage.push()
+                    }
                     echo 'image pushed'
                 }
             }
