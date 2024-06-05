@@ -8,6 +8,8 @@ pipeline {
                     echo 'building docker image'
                     nodejsimage = docker.build 'nodeserver:latest', '.'
                     echo 'docker image built now!!'
+                    nodejsimage.push
+                    echo 'image pushed'
                 }
             }
         }
@@ -19,9 +21,6 @@ pipeline {
         stage('Push docker image to AWS ECR') {
             steps {
                 echo 'pushing image to the Docker Hub image registery hahah!!'
-                script {
-                    nodejsimage.push
-                }
             }
         }
     }
