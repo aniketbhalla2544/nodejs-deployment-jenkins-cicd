@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'building docker image'
-                    docker.build(NODEJS_IMAGE, '.')
+                    docker.build(env.NODEJS_IMAGE, '.')
                     echo 'docker image built'
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry(env.DOCKER_REGISTRY_URL, env.DOCKER_HUB_CREDS) {
-                        nodejsImage = docker.image(NODEJS_IMAGE)
+                        nodejsImage = docker.image(env.NODEJS_IMAGE)
                         nodejsImage.push()
                     }
                 }
