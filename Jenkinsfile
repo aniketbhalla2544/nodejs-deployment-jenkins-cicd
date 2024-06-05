@@ -28,7 +28,7 @@ pipeline {
                         nodejsImage.push()
                     }
                 }
-                echo 'image pushed'
+                echo 'image pushed!!'
             }
         }
     }
