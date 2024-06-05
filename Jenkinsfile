@@ -2,8 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY_URL = ''
-        DOCKER_HUB_CREDS = 'docker-creds'
+        DOCKER_REGISTRY_URL = ''  // Assuming Docker Hub as default
+        DOCKER_HUB_CREDS = 'docker-creds' // jenkins docker hub credentials
+        NODEJS_IMAGE = 'aniketbhalla/nodeserver:latest'
     }
 
     stages {
@@ -11,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'building docker image'
-                    nodejsImage = docker.build('aniketbhalla/nodeserver:latest', '.')
+                    docker.build(NODEJS_IMAGE, '.')
                     echo 'docker image built'
                 }
             }
@@ -21,10 +22,11 @@ pipeline {
                 echo 'Test passed'
             }
         }
-        stage('Push docker image to AWS ECR') {
+        stage('Push docker image to Docker Hub') {
             steps {
                 script {
                     docker.withRegistry(env.DOCKER_REGISTRY_URL, env.DOCKER_HUB_CREDS) {
+                        nodejsImage = docker.image(NODEJS_IMAGE)
                         nodejsImage.push()
                     }
                 }
