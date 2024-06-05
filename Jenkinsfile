@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_REGISTRY_URL = ''  // Assuming Docker Hub as default
         DOCKER_HUB_CREDS = 'docker-creds' // jenkins docker hub credentials
         NODEJS_IMAGE = 'aniketbhalla/nodeserver:latest'
     }
@@ -26,7 +25,7 @@ pipeline {
             steps {
                 script {
                     echo 'preparing to pushing docker image'
-                    docker.withRegistry(env.DOCKER_REGISTRY_URL, env.DOCKER_HUB_CREDS) {
+                    docker.withRegistry('', env.DOCKER_HUB_CREDS) {
                         nodejsImage = docker.image("${env.NODEJS_IMAGE}")
                         nodejsImage.push()
                     }
@@ -40,7 +39,7 @@ pipeline {
             echo 'clean up completed'
         }
         failure {
-            echo 'Pipeline faild'
+            echo 'Pipeline failed'
         }
         success {
             echo 'Pipeline succeeded!'
