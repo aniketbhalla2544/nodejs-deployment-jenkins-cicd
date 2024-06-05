@@ -6,6 +6,8 @@ pipeline {
         DOCKER_HUB_CREDS = 'docker-creds'
     }
 
+    def nodejsImage
+
     stages {
         stage('Build') {
             steps {
