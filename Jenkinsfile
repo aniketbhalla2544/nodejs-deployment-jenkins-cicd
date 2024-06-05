@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        DOCKER_REGISTRY_URL = ''
         DOCKER_HUB_CREDS = 'docker-creds'
     }
 
@@ -11,11 +12,7 @@ pipeline {
                 script {
                     echo 'building docker image'
                     nodejsImage = docker.build('aniketbhalla/nodeserver:latest', '.')
-                    echo 'docker image built now!!'
-                    docker.withRegistry('', DOCKER_HUB_CREDS) {
-                        nodejsImage.push()
-                    }
-                    echo 'image pushed'
+                    echo 'docker image built'
                 }
             }
         }
@@ -26,7 +23,10 @@ pipeline {
         }
         stage('Push docker image to AWS ECR') {
             steps {
-                echo 'nothinG!!'
+                docker.withRegistry(DOCKER_REGISTRY_URL, DOCKER_HUB_CREDS) {
+                        nodejsImage.push()
+                }
+                echo 'image pushed'
             }
         }
     }
