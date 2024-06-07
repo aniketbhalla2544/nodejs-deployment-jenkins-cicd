@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    echo 'building docker image'
+                    echo 'building docker imagess'
                     docker.build(env.NODEJS_IMAGE, '.')
                     echo 'docker image built'
                 }
