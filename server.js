@@ -59,6 +59,14 @@ app.get('/api/products', (req, res) => {
         price: 50.0,
         category: 'Fitness',
       },
+      {
+        id: 77,
+        name: 'Noushad product',
+        description:
+          'Non-slip, environmentally friendly yoga mat made from natural rubber. Ideal for both beginners and advanced yoga practitioners.',
+        price: 50.0,
+        category: 'Fitness',
+      },
     ],
   });
 });
