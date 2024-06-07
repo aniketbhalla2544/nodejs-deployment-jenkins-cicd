@@ -34,6 +34,13 @@ pipeline {
                 echo 'image pushed!!'
             }
         }
+        stage('Deployment') {
+            steps {
+                script {
+                    sh "docker run -d -p 3007:3007 ${IMAGE_REPO_URI}:${TAG}"
+                }
+            }
+        }
     }
     post {
         always {
