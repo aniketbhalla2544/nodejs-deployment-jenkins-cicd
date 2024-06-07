@@ -5,6 +5,7 @@ pipeline {
         DOCKER_HUB_CREDS = 'docker-creds' // jenkins docker hub credentials
         NODEJS_IMAGE = 'aniketbhalla/nodeserver:latest'
         IMAGE_REPO_URI  = 'public.ecr.aws/c2f1k9h5/nodejs-server'
+        TAG = 'short'
     }
 
     stages {
@@ -14,7 +15,7 @@ pipeline {
                     echo 'building docker imagess'
                     docker.build(env.NODEJS_IMAGE, '.')
                     nodejsImage = docker.image("${env.NODEJS_IMAGE}")
-                    sh "docker tag ${NODEJS_IMAGE} ${IMAGE_REPO_URI}:latest"
+                    sh "docker tag ${NODEJS_IMAGE} ${IMAGE_REPO_URI}:${TAG}"
                 }
             }
         }
@@ -28,7 +29,7 @@ pipeline {
                 script {
                     echo 'preparing to pushing docker image'
                     sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/c2f1k9h5'
-                    sh "docker push ${IMAGE_REPO_URI}"
+                    sh "docker push ${IMAGE_REPO_URI}:${TAG}"
                 }
                 echo 'image pushed!!'
             }
